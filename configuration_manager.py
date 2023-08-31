@@ -6,15 +6,15 @@ class ConfigurationManager(ABC):
 
     def __init__(self):
         self._start_date = datetime(2021, 7, 1)
-        self._durations = [60]
+        self._duration = [60]
         self._frequency = ['1D']
         self._daily_seasonality = ["no"]
         self._weekly_seasonality = ["no"]
         self._noise_level = ["small"]
         self._trend_level = ["no"]
-        self._cyclic_periods = ["no"]
+        self._cyclic_period = ["no"]
         self._data_type = ["additive"]
-        self._percentage_outliers_options = [0.05]
+        self._percentage_outliers = [0.05]
         self._datasets_num = 1
 
     @property
@@ -26,16 +26,16 @@ class ConfigurationManager(ABC):
         return self._daily_seasonality
 
     @property
-    def cyclic_periods(self):
-        return self._cyclic_periods
+    def cyclic_period(self):
+        return self._cyclic_period
 
     @property
     def noise_level(self):
         return self._noise_level
 
     @property
-    def durations(self):
-        return self._durations
+    def duration(self):
+        return self._duration
 
     @property
     def start_date(self):
@@ -54,8 +54,8 @@ class ConfigurationManager(ABC):
         return self._trend_level
 
     @property
-    def percentage_outliers_options(self):
-        return self._percentage_outliers_options
+    def percentage_outliers(self):
+        return self._percentage_outliers
 
     @property
     def data_type(self):
