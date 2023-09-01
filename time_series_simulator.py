@@ -115,7 +115,6 @@ class TimeSeriesGenerator:
         self.__time_series = self.__add_noise()
         self.__time_series, self.__anomaly_mask = self.__add_outliers()
         self.__time_series = self.__add_missing_values()
-        self.__config_manager.configure()
         return self.__time_series, self.__date_range, self.__anomaly_mask
 
 
