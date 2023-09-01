@@ -12,6 +12,8 @@ class TimeSeriesGenerator:
 
     def __init__(self, config_manager: ConfigurationManager):
         self.__time_series = None
+        self.__date_range = None
+        self.__anomaly_mask = None
         self.__config_manager = config_manager
 
     @property
@@ -23,6 +25,7 @@ class TimeSeriesGenerator:
                                  end=self.__config_manager.start_date + timedelta(days=self.__config_manager.duration),
                                  freq=self.__config_manager.frequency)
         self.__time_series = date_rng
+        self.__date_range = date_rng.copy(deep=True)
 
     def __add_daily_seasonality(self):
         if self.__config_manager.daily_seasonality == "exist":  # Daily Seasonality
@@ -99,7 +102,6 @@ class TimeSeriesGenerator:
         return data_with_missing
 
     def generate_time_series(self):
-        self.__config_manager.configure()
         self.__generate_data_range()
         if self.__config_manager.data_type == "multiplicative":
             self.__time_series = (self.__add_daily_seasonality() * self.__add_weekly_seasonality() *
@@ -111,9 +113,10 @@ class TimeSeriesGenerator:
         scaler = MinMaxScaler(feature_range=(-1, 1))
         self.__time_series = scaler.fit_transform(self.__time_series.values.reshape(-1, 1))
         self.__time_series = self.__add_noise()
-        self.__time_series, _ = self.__add_outliers()
+        self.__time_series, self.__anomaly_mask = self.__add_outliers()
         self.__time_series = self.__add_missing_values()
-        return self.__time_series
+        self.__config_manager.configure()
+        return self.__time_series, self.__date_range, self.__anomaly_mask
 
 
 

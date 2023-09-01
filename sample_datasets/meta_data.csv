@@ -1,0 +1,11 @@
+id,data_type,daily_seasonality,weekly_seasonality,noise,trend,cyclic_period (3 months),data_size,percentage_outliers,percentage_missing,freq
+0,additive,no,no,small,exist,no,60,0.05,0.05,30T
+1,additive,no,no,small,no,exist,120,0.05,0.05,1D
+2,,no,no,small,exist,no,365,0.05,0.05,6H
+3,additive,exist,no,small,exist,no,240,0.05,0.05,30T
+4,additive,exist,no,small,exist,no,180,0.05,0.05,6H
+5,additive,no,exist,small,exist,exist,240,0.05,0.05,1D
+6,,exist,no,small,no,no,60,0.05,0.05,6H
+7,additive,no,exist,small,exist,exist,60,0.05,0.05,1D
+8,additive,no,exist,small,exist,no,330,0.05,0.05,1H
+9,,exist,exist,small,exist,exist,365,0.05,0.05,8H

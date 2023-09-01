@@ -5,6 +5,7 @@
 import sys
 from yaml_configuration_manager import YAMLConfigurationManager
 from time_series_simulator import TimeSeriesGenerator
+from csv_data_producer import CSVDataProducer
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -21,13 +22,19 @@ if __name__ == '__main__':
         config_manager = YAMLConfigurationManager()
 
     if sys.argv[2] == "csv":
-        pass
+        print("Producing data in .csv format")
+        data_producer = CSVDataProducer()
+    else:
+        print("Invalid second argument reverting to CSV output")
+        data_producer = CSVDataProducer()
 
     config_manager.load_config()
-
+    config_manager.configure()
     generator = TimeSeriesGenerator(config_manager=config_manager)
 
-    for _ in range(config_manager.datasets_num):
-        generator.generate_time_series()
+    for series_num in range(config_manager.datasets_num):
+        time_series, data_range, anomaly_mask = generator.generate_time_series()
+        data_producer.produce_data(time_series, data_range, anomaly_mask, str(series_num), config_manager)
 
+    data_producer.generate_metadata_file()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
