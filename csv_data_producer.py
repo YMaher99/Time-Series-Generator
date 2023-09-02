@@ -4,6 +4,7 @@ import pandas as pd
 
 class CSVDataProducer(DataProducer):
     def produce_data(self, time_series, date_range, anomaly_mask, filename, config_manager):
+
         df = pd.DataFrame({'value': time_series, 'timestamp': date_range, 'anomaly': anomaly_mask})
         df.to_csv(f"./sample_datasets/{filename}.csv", encoding='utf-8', index=False)
         self._metadata.append({'id': str(filename),
@@ -19,4 +20,7 @@ class CSVDataProducer(DataProducer):
                                'freq': config_manager.frequency})
 
     def generate_metadata_file(self):
+        """
+            Generates a .csv file containing the metadata of the generated time series
+        """
         pd.DataFrame.from_records(self._metadata).to_csv('sample_datasets/meta_data.csv', encoding='utf-8', index=False)

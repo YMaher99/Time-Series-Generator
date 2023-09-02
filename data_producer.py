@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from configuration_manager import ConfigurationManager
 
+
 class DataProducer(ABC):
 
     def __init__(self):
