@@ -4,11 +4,13 @@ import numpy as np
 from datetime import datetime, timedelta
 from configuration_manager import ConfigurationManager
 from sklearn.preprocessing import MinMaxScaler
+from abstract_time_series_generator import AbstractTimeSeriesGenerator
+
 
 random.seed(22)
 
 
-class TimeSeriesGenerator:
+class TimeSeriesGenerator(AbstractTimeSeriesGenerator):
 
     def __init__(self, config_manager: ConfigurationManager):
         self.__time_series = None
