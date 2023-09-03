@@ -66,8 +66,14 @@ class ConfigurationManager(ABC):
 
     @abstractmethod
     def load_config(self):
+        """
+            Abstract method to load the configuration options
+        """
         pass
 
     @abstractmethod
     def configure(self):
+        """
+            Abstract method to choose the configuration to be used to generate a time series
+        """
         pass

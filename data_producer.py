@@ -19,9 +19,21 @@ class DataProducer(ABC):
         self._metadata = value
 
     @abstractmethod
-    def produce_data(self, time_series, date_range, anomaly_mask, filename, config_manager: ConfigurationManager):
+    def produce_data(self, time_series, date_range, anomaly_mask, config_manager: ConfigurationManager, filename=None):
+        """
+            Abstract method to produce the time series data
+        Args:
+            time_series: the time series to be saved to file.
+            date_range: the timestamps of the data points in the time series.
+            anomaly_mask: indicates whether each point is an anomaly or not.
+            config_manager (ConfigurationManager): the configuration manager containing the configs that generated the time series.
+            filename: the name of the file to be created, if applicable.
+        """
         pass
 
     @abstractmethod
     def generate_metadata_file(self):
+        """
+            Abstract method to generate a file containing the metadata of all the generated time series
+        """
         pass

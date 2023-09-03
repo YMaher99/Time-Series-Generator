@@ -19,10 +19,16 @@ class YAMLConfigurationManager(ConfigurationManager):
         self.__yaml_data = value
 
     def load_config(self):
+        """
+            loads configuration options from config.yaml
+        """
         with open("config.yaml", 'r') as file:
             self.__yaml_data = yaml.safe_load(file)
 
     def configure(self):
+        """
+            chooses the configuration to be used for the generation of a time series
+        """
         self._start_date = datetime.strptime(self.__yaml_data['start_date'], "%d-%m-%Y")
         self._duration = random.choice(self.__yaml_data['data_sizes'])
         self._frequency = random.choice(self.__yaml_data['frequencies'])

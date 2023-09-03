@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
     for series_num in range(config_manager.datasets_num):
         time_series, data_range, anomaly_mask = generator.generate_time_series()
-        data_producer.produce_data(time_series, data_range, anomaly_mask, str(series_num), config_manager)
+        data_producer.produce_data(time_series, data_range, anomaly_mask, config_manager, str(series_num))
         config_manager.configure()
 
     data_producer.generate_metadata_file()

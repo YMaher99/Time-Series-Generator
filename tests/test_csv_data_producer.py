@@ -32,8 +32,8 @@ class TestCSVDataProducer(unittest.TestCase):
 
     def test_produce_data_success(self):
         self.__producer.produce_data(self.__time_series, self.__date_range, self.__anomaly_mask,
-                                     self.__filename,
-                                     self.__mock_configuration_manager)
+                                     self.__mock_configuration_manager,
+                                     self.__filename)
         self.assertTrue(os.path.exists('./sample_datasets/test.csv'), "Time series file was not created successfully")
 
     def test_generate_metadata_file(self):
