@@ -10,6 +10,14 @@ class YAMLConfigurationManager(ConfigurationManager):
         super().__init__()
         self.__yaml_data = None
 
+    @property
+    def yaml_data(self):
+        return self.__yaml_data
+
+    @yaml_data.setter
+    def yaml_data(self, value):
+        self.__yaml_data = value
+
     def load_config(self):
         with open("config.yaml", 'r') as file:
             self.__yaml_data = yaml.safe_load(file)
